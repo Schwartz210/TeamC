@@ -18,7 +18,7 @@ public class Student {
         return true;
     }
 
-    public int getGPA(){
+    public double getGPA(){
         // TODO returns student GPA based on collection of Course objects
         return 0;
     }
