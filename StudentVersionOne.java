@@ -34,9 +34,15 @@ public class StudentVersionOne {
         return score / credits;
     }
 
-    public Course getGrade(String courseName){
+    public Course getCourse(String courseName){
         // TODO returns the appropriate Grade node
-        return new Course("Default", 100, 3, "A", "CS");
+        for (Course course:mCourseList){
+            if (course.getCourseName().equals(courseName)){
+                return course;
+            }
+        }
+        String message = courseName + " is not found.";
+        throw new IllegalArgumentException(message);
     }
 
     public boolean eligibleToGraduate(){

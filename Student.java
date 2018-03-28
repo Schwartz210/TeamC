@@ -9,7 +9,7 @@ public class Student {
         mMajor = major;
     }
 
-    public void put(Course grade){
+    public void put(Course course){
         // TODO this method adds a Grade object to your collection
     }
 
@@ -19,12 +19,12 @@ public class Student {
     }
 
     public int getGPA(){
-        // TODO returns student GPA based on collection of Grade objects
+        // TODO returns student GPA based on collection of Course objects
         return 0;
     }
 
-    public Course getGrade(String courseName){
-        // TODO returns the appropriate Grade node
+    public Course getCourse(String courseName){
+        // TODO returns the appropriate Course node
         return new Course("Default", 100, 3, "A", "CS");
     }
 

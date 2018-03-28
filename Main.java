@@ -9,6 +9,7 @@ public class Main {
         s1.put(new Course("Name", 100, 2, "C", "CS"));
         s1.put(new Course("Name", 100, 1, "D+", "CS"));
         System.out.println(s1.getGPA());
+        System.out.println(s1.getCourse("Name"));
 
 
     }
