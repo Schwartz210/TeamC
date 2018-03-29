@@ -37,14 +37,13 @@ public class Student {
         return true;
     }
 
-    public boolean hasCompletedRequirement(String areaOfStudy){
-        /** TODO returns bool representing if student has enough credits in a given area. This is a helper function for
-         * method eligibleToGraduate(). Also prints how many credits student has in this area, and how many more is required*/
-        return true;
-    }
-
     public int getCreditCount(){
         // TODO returns total number of credits the student has
         return 0;
+    }
+
+    public String getName(){
+        // Getter method for private String mName
+        return mName;
     }
 }

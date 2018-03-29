@@ -86,6 +86,14 @@ public class Course {
         }
         throw new IllegalArgumentException("The only acceptable areaOfStudy inputs Math, CS, and Liberal");
     }
+
+    public boolean isUpperLevel(){
+        if (mCourseNumber >= 300){
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
 
 

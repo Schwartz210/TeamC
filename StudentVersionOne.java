@@ -10,7 +10,7 @@ public class StudentVersionOne {
         mName = name;
         Course.isValidAreaOfStudy(major);
         mMajor = major;
-        mCourseList = new ArrayList<Course>();
+        mCourseList = new ArrayList<>();
     }
 
     public void put(Course course){
@@ -20,13 +20,18 @@ public class StudentVersionOne {
 
     public boolean tookThisCourse(String courseName){
         // TODO returns bool representing if this student took this Course
-        return true;
+        for (Course course:mCourseList){
+            if (course.getCourseName().equals(courseName)){
+                return true;
+            }
+        }
+        return false;
     }
 
     public double getGPA(){
         // TODO returns student GPA based on collection of Grade objects
         double score = 0.0;
-        double credits = 0;
+        double credits = 0.0;
         for (Course course:mCourseList){
             score += course.getWeightedValue();
             credits += course.getNumberOfCredits();
@@ -49,19 +54,73 @@ public class StudentVersionOne {
         /** TODO returns bool representing if student has met requirements to graduate(we will define based on some
          * quantity of credits, some quantity of upper level credits, and quantity of credits in the three areaOfStudy*/
         // Must have 36 credits in major
+        if (!hasCompletedMajorRequirement()){
+            return false;
+        }
         // Must have 120 credits total
+        if (getCreditCount() < 120){
+            return false;
+        }
         // Must have 60 upper level credits
+        if (!hasCompletedUpperLevelRequirement()){
+            return false;
+        }
         return true;
     }
 
-    public boolean hasCompletedRequirement(String areaOfStudy){
-        /** TODO returns bool representing if student has enough credits in a given area. This is a helper function for
-         * method eligibleToGraduate(). Also prints how many credits student has in this area, and how many more is required*/
-        return true;
+    public int getCountMajorCredits(){
+        // Returns int count of credits completed in student's major
+        int credits = 0;
+        for (Course course:mCourseList){
+            if (course.getAreaOfStudy().equals(mMajor)){
+                credits += course.getNumberOfCredits();
+            }
+        }
+        return credits;
+    }
+
+    public boolean hasCompletedMajorRequirement(){
+        // Returns bool representing if student has >= 36 credits in their major
+        int credits = getCountMajorCredits();
+        if (credits >= 36){
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public int getCreditCount(){
         // TODO returns total number of credits the student has
-        return 0;
+        int credits = 0;
+        for (Course course:mCourseList){
+            credits += course.getNumberOfCredits();
+        }
+        return credits;
+    }
+
+    public int getCountUpperLevelCredits(){
+        // Returns int count of upper-level credits
+        int credits = 0;
+        for (Course course:mCourseList){
+            if (course.isUpperLevel()){
+                credits += course.getNumberOfCredits();
+            }
+        }
+        return credits;
+    }
+
+    public boolean hasCompletedUpperLevelRequirement(){
+        // Returns bool if student has completed >= 60 credits of upper-level study
+        int credits = getCountUpperLevelCredits();
+        if (credits >= 60){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public String getName(){
+        // Getter method for private String mName
+        return mName;
     }
 }
