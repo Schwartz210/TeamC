@@ -22,14 +22,17 @@ public class Course {
     }
 
     public String getCourseName(){
+        // Returns mCourseName
         return mCourseName;
     }
 
     public int getCourseNumber(){
+        // Returns mCourseNumber
         return mCourseNumber;
     }
 
     public int getNumberOfCredits(){
+        // Returns mNumberOfCredits or 0 if the student did not get a passing grade
         if (hasPassedCourse()){
             return mNumberOfCredits;
         }
@@ -37,14 +40,17 @@ public class Course {
     }
 
     public String getLetterGrade(){
+        // Returns mLetterGrade
         return mLetterGrade;
     }
 
     public String getAreaOfStudy(){
+        // Returns mAreaOfStudy
         return mAreaOfStudy;
     }
 
     public void setGPAMultiplier(){
+        // Sets HashMap<String, Double> mGPAMultiplier which says how much each letter grade is worth
         mGPAMultiplier.put("A", 4.0);
         mGPAMultiplier.put("A-", 3.7);
         mGPAMultiplier.put("B+", 3.33);
@@ -60,17 +66,20 @@ public class Course {
     }
 
     public double getWeightedValue(){
+        // Returns the score * getNumberOfCredits() to get the weightedValue
         Double score = mGPAMultiplier.get(mLetterGrade);
         return score * getNumberOfCredits();
     }
 
     public void validateLetterGradeInput(String letterGrade){
+        // For validating letterGrade
         if (!mGPAMultiplier.containsKey(letterGrade)){
             throw new IllegalArgumentException("The only acceptable letterGrade inputs are A, A-, B+, B, B-, C+, C, C-, D+, D, D-, F");
         }
     }
 
     public boolean hasPassedCourse(){
+        // Returns boolean representing if course was passed
         if (!mLetterGrade.equals("F")){
             return true;
         }
@@ -78,6 +87,7 @@ public class Course {
     }
 
     public static void isValidAreaOfStudy(String areaOfStudy){
+        // Validates areaOfStudy
         String[] areasOfStudy = {"Math", "CS", "Liberal"};
         for (String element:areasOfStudy){
             if (element.equals(areaOfStudy)){
@@ -88,6 +98,7 @@ public class Course {
     }
 
     public boolean isUpperLevel(){
+        // Returns boolean representing if course was upper level or not
         if (mCourseNumber >= 300){
             return true;
         } else {
